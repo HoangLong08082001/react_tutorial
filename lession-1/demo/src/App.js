@@ -2,11 +2,23 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
+  // //Dang bool
+  // true: "text"
+  // false: "password"
+  // //Dang number
+  // 0:"text"
+  // 1:"password"
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [status, setStatus] = useState(false); // const status = false;
+  
   function mouseClick() {
     alert(`username: ${username}, password: ${password}`);
   }
+  const showPassword = () => {
+    // setStatus(true) //status = false => onClick: status = true => onClick: status = true(default)
+    setStatus(!status); //status = false=> onCLick: status = true : status = true => Onclick: status = false
+  };
   return (
     <div className="App">
       <div className="form">
@@ -24,14 +36,14 @@ function App() {
           </div>
           <div className="form-input">
             <input
-              type="text"
+              type={status === false ? "password" : "text"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter password"
               name=""
               id=""
             />
-            <p>Disable</p>
+            <p onClick={showPassword}>Disable</p>
           </div>
           <div className="form-input-btn">
             <button className="signin" onClick={mouseClick}>
